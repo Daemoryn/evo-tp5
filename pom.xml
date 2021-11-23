@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.daemoben</groupId>
-    <artifactId>evo-tp5</artifactId>
+    <artifactId>evo-tp5-traceability</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
