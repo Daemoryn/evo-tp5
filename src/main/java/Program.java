@@ -2,30 +2,110 @@ import models.Product;
 import models.Repository;
 import models.User;
 
-import java.util.Date;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Program {
     public static void main(String[] args) {
-        User u1 = new User(UUID.randomUUID(), "Alexandre", 28, "alex@gmail.com", "123456");
-        System.out.println(u1);
+        boolean stop = false;
+        int entry = -1;
+        Scanner sc = new Scanner(System.in);
 
+        User u1 = new User(UUID.fromString("b0ef2a54-488b-4ee4-8e62-db81cf1a8792"), "Alexandre", 28, "alex@gmail.com", "123456");
         Repository r1 = new Repository();
-        Product p1 = new Product(UUID.randomUUID(), "Voiture Tesla", 43800, new Date());
-//        Product p2 = new Product(p1.getId(), "Chapeau", 2, new Date());
+        Product p1 = new Product(UUID.fromString("8806c56a-e7d9-4f51-978a-96f0d3ceb5fa"), "Voiture Tesla", "43800", "1999-09-27");
+        Product p2 = new Product(UUID.fromString("101c2d79-0e0c-487e-b265-76da0dd9db40"), "Chapeau", "2", "1998-04-23");
+
         try {
             r1.addProduct(p1);
-//            r1.addProduct(p2);
-            System.out.println("1 -- "+r1);
-            System.out.println("2 -- "+r1.getProductById(p1.getId()));
-//            r1.deleteProductById(p1.getId());
-//            System.out.println("3 -- "+r1);
-            r1.updateProduct(p1.getId(), "Model 3 autonomie Standard Plus");
-            System.out.println("3 -- "+r1);
-            r1.updateProduct(p1.getId(), 50000.0);
-            System.out.println("4 -- "+r1);
+            r1.addProduct(p2);
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+
+        System.out.println("Bonjour " + u1.getName() + " !");
+        while (!stop) {
+            System.out.println("1 : Afficher les produits dans le depot");
+            System.out.println("2 : Aller chercher un produit via son ID");
+            System.out.println("3 : Ajouter un nouveau produit");
+            System.out.println("4 : Supprimer un produit via son ID");
+            System.out.println("5 : Modifier les informations d'un produit via son ID");
+            System.out.println("0 : Quitter");
+            System.out.print("Choix : ");
+            try {
+                entry = sc.nextInt();
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            switch (entry) {
+                case 0 -> {
+                    stop = true;
+                    System.out.println("Arrêt du programme");
+                }
+                case 1 -> {
+                    try {
+                        System.out.println(r1);
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 2 -> {
+                    System.out.print("Saisissez l'ID du produit à afficher : ");
+                    try {
+                        String StrUuid = sc.next();
+                        System.out.println(r1.getProductById(UUID.fromString(StrUuid)));
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 3 -> {
+                    try {
+                        System.out.println("Saisissez le nom du produit à créer : ");
+                        String name = sc.next();
+                        System.out.println("Saisissez le prix du produit à créer : ");
+                        String price = sc.next();
+                        System.out.println("Saisissez la date d'expiration du produit à créer (YYYY-MM-DD) : ");
+                        String date = sc.next();
+                        UUID uuid = UUID.randomUUID();
+                        r1.addProduct(new Product(uuid, name, price, date));
+                        System.out.println("Voici le produit crée");
+                        System.out.println(r1.getProductById(uuid));
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 4 -> {
+                    try {
+                        System.out.println("Saisissez l'id du produit à supprimer : ");
+                        String StrUuid = sc.next();
+                        r1.deleteProductById(UUID.fromString(StrUuid));
+                        System.out.println("Suppression effectuée, voici le depot : ");
+                        System.out.println(r1);
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                case 5 -> {
+                    try {
+                        System.out.println("Voici le depot : ");
+                        System.out.println(r1);
+                        System.out.println("Saisissez l'ID du produit à modifier : ");
+                        String StrUuid = sc.next();
+                        System.out.println("Saisissez le nom du produit. Si pas de modification appuyez juste sur entrée : ");
+                        String name = sc.next();
+                        System.out.println("Saisissez le prix du produit. Si pas de modification appuyez juste sur entrée : ");
+                        String price = sc.next();
+                        System.out.println("Saisissez la date du produit. Si pas de modification appuyez juste sur entrée : ");
+                        String date = sc.next();
+                        r1.updateProduct(UUID.fromString(StrUuid), name, price, date);
+                        System.out.println("Modification effectuée, voici le produit modifié : ");
+                        System.out.println(r1.getProductById(UUID.fromString(StrUuid)));
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+                default -> System.out.println("Veuillez saisir un numéro du menu");
+            }
         }
     }
 }
