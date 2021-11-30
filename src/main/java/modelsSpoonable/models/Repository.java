@@ -1,10 +1,8 @@
-package models;
+package modelsSpoonable.models;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
-import models.Product;
 
 public class Repository {
     private ArrayList<Product> products = new ArrayList<>();

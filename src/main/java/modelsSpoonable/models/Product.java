@@ -1,4 +1,4 @@
-package models;
+package modelsSpoonable.models;
 
 import java.util.UUID;
 

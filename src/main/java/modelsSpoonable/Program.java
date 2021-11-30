@@ -1,6 +1,8 @@
-import models.Product;
-import models.Repository;
-import models.User;
+package modelsSpoonable;
+
+import modelsSpoonable.models.Product;
+import modelsSpoonable.models.Repository;
+import modelsSpoonable.models.User;
 
 import java.util.Scanner;
 import java.util.UUID;
