@@ -35,8 +35,6 @@ public class Repository {
         throw new Exception("error: no product with the provided ID exists.");
     }
 
-
-
     public void deleteProductById(UUID id) throws Exception {
         for (Product p : products) {
             if (p.getId().equals(id)) {

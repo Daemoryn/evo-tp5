@@ -1,7 +1,5 @@
 import spoon.Launcher;
 
-import java.io.File;
-
 public class ParserSpoon {
     public static void main(String[] args) {
         Launcher spoon = new Launcher();
@@ -9,6 +7,5 @@ public class ParserSpoon {
         spoon.getEnvironment().setAutoImports(true);
         spoon.addProcessor(new LogProcessor());
         spoon.run();
-
     }
 }

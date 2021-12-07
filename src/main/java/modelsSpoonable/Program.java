@@ -9,17 +9,16 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.logging.FileHandler;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Program {
-    private static Logger logger = Logger.getLogger(Program.class.getName());
+//    private static Logger logger = Logger.getLogger(Program.class.getName());
 
     public static void main(String[] args) {
         try {
             FileHandler handler = new FileHandler(".logs/" + UUID.randomUUID() + ".log");
             handler.setFormatter(new HTMLFormatter());
-            logger.addHandler(handler);
+//            logger.addHandler(handler);
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -36,7 +35,7 @@ public class Program {
             r1.addProduct(p1);
             r1.addProduct(p2);
         } catch (Exception e) {
-            logger.severe("Erreur pendant l'initialisation du dépot : " + e);
+//            logger.severe("Erreur pendant l'initialisation du dépot : " + e);
         }
 
         System.out.println("Bonjour " + u1.getName() + " !");
@@ -50,20 +49,20 @@ public class Program {
             System.out.print("Choix : ");
             try {
                 entry = sc.nextLine();
-                logger.info("L'utilisateur à entré pour le choix : " + entry);
+                System.out.println("L'utilisateur à entré pour le choix : " + entry);
             } catch (Exception e) {
-                logger.severe("Erreur pendant le scan de l'input : " + e);
+//                logger.severe("Erreur pendant le scan de l'input : " + e);
             }
             switch (entry) {
                 case "0" -> {
                     stop = true;
-                    logger.info("Arrêt du programme");
+                    System.out.println("Arrêt du programme");
                 }
                 case "1" -> {
                     try {
                         System.out.println(r1);
                     } catch (Exception e) {
-                        logger.severe("Erreur pendant l'initialisation du dépot : " + e);
+//                        logger.severe("Erreur pendant l'initialisation du dépot : " + e);
                     }
                 }
                 case "2" -> {
@@ -72,28 +71,28 @@ public class Program {
                     System.out.println("Saisissez l'ID du produit à afficher : ");
                     try {
                         String StrUuid = sc.next();
-                        logger.info("L'utilisateur à entré pour l'uuid : " + StrUuid);
+                        System.out.println("L'utilisateur à entré pour l'uuid : " + StrUuid);
                         System.out.println(r1.getProductById(UUID.fromString(StrUuid)));
                     } catch (Exception e) {
-                        logger.severe("Erreur pendant l'affichage du produit : " + e);
+//                        logger.severe("Erreur pendant l'affichage du produit : " + e);
                     }
                 }
                 case "3" -> {
                     try {
                         System.out.println("Saisissez le nom du produit à créer : ");
                         String name = sc.next();
-                        logger.info("L'utilisateur à entré pour le nom : " + name);
+                        System.out.println("L'utilisateur à entré pour le nom : " + name);
                         System.out.println("Saisissez le prix du produit à créer : ");
                         String price = sc.next();
-                        logger.info("L'utilisateur à entré pour le prix : " + price);
+                        System.out.println("L'utilisateur à entré pour le prix : " + price);
                         System.out.println("Saisissez la date d'expiration du produit à créer (YYYY-MM-DD) : ");
                         String date = sc.next();
-                        logger.info("L'utilisateur à entré pour la date d'expiration : " + date);
+                        System.out.println("L'utilisateur à entré pour la date d'expiration : " + date);
                         UUID uuid = UUID.randomUUID();
                         r1.addProduct(new Product(uuid, name, price, date));
-                        logger.info("Voici le produit crée : " + r1.getProductById(uuid));
+                        System.out.println("Voici le produit crée : " + r1.getProductById(uuid));
                     } catch (Exception e) {
-                        logger.severe("Erreur pendant la création du produit : " + e);
+//                        logger.severe("Erreur pendant la création du produit : " + e);
                     }
                 }
                 case "4" -> {
@@ -102,11 +101,11 @@ public class Program {
                         System.out.println(r1);
                         System.out.println("Saisissez l'id du produit à supprimer : ");
                         String StrUuid = sc.next();
-                        logger.info("L'utilisateur à entré pour l'uuid : " + StrUuid);
+                        System.out.println("L'utilisateur à entré pour l'uuid : " + StrUuid);
                         r1.deleteProductById(UUID.fromString(StrUuid));
-                        logger.info("Suppression effectuée, voici le depot : " + r1);
+                        System.out.println("Suppression effectuée, voici le depot : " + r1);
                     } catch (Exception e) {
-                        logger.severe("Erreur pendant la suppression du produit : " + e);
+//                        logger.severe("Erreur pendant la suppression du produit : " + e);
                     }
                 }
                 case "5" -> {
@@ -115,20 +114,20 @@ public class Program {
                         System.out.println(r1);
                         System.out.println("Saisissez l'ID du produit à modifier : ");
                         String StrUuid = sc.nextLine();
-                        logger.info("L'utilisateur à entré pour l'uuid : " + StrUuid);
+                        System.out.println("L'utilisateur à entré pour l'uuid : " + StrUuid);
                         System.out.println("Saisissez le nom du produit. (Saisissez une entrée vide pour passer) Nom = " + r1.getProductById(UUID.fromString(StrUuid)).getName() + " : ");
                         String name = sc.nextLine();
-                        logger.info("L'utilisateur à entré pour le nom : " + name);
+                        System.out.println("L'utilisateur à entré pour le nom : " + name);
                         System.out.println("Saisissez le prix du produit. Prix = " + r1.getProductById(UUID.fromString(StrUuid)).getPrice() + " : ");
                         String price = sc.nextLine();
-                        logger.info("L'utilisateur à entré pour le prix : " + price);
+                        System.out.println("L'utilisateur à entré pour le prix : " + price);
                         System.out.println("Saisissez la date du produit. Date d'expiration = " + r1.getProductById(UUID.fromString(StrUuid)).getExpirationDate() + " : ");
                         String date = sc.nextLine();
-                        logger.info("L'utilisateur à entré pour la date d'expiration : " + date);
+                        System.out.println("L'utilisateur à entré pour la date d'expiration : " + date);
                         r1.updateProduct(UUID.fromString(StrUuid), name, price, date);
-                        logger.info("Modification effectuée, voici le produit modifié : " + r1.getProductById(UUID.fromString(StrUuid)));
+                        System.out.println("Modification effectuée, voici le produit modifié : " + r1.getProductById(UUID.fromString(StrUuid)));
                     } catch (Exception e) {
-                        logger.severe("Erreur pendant la modification du produit : " + e);
+//                        logger.severe("Erreur pendant la modification du produit : " + e);
                     }
                 }
                 default -> System.out.println("Veuillez saisir un numéro du menu");
