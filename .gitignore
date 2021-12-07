@@ -4,3 +4,5 @@
 *.class
 
 spooned/
+/evo-tp5-traceability.iml
+/.logs/

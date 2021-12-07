@@ -1,17 +1,28 @@
 package modelsSpoonable;
 
+import modelsSpoonable.formatter.HTMLFormatter;
 import modelsSpoonable.models.Product;
 import modelsSpoonable.models.Repository;
 import modelsSpoonable.models.User;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Program {
-    private static final Logger logger = Logger.getLogger(Program.class.getName());
+    private static Logger logger = Logger.getLogger(Program.class.getName());
 
     public static void main(String[] args) {
+        try {
+            FileHandler handler = new FileHandler(".logs/" + UUID.randomUUID() + ".log");
+            handler.setFormatter(new HTMLFormatter());
+            logger.addHandler(handler);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
         boolean stop = false;
         String entry = "";
         Scanner sc = new Scanner(System.in);
