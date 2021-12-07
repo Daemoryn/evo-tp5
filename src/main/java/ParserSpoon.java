@@ -1,11 +1,4 @@
 import spoon.Launcher;
-import spoon.reflect.CtModel;
-import spoon.reflect.code.CtComment;
-import spoon.reflect.declaration.CtClass;
-import spoon.reflect.declaration.CtField;
-import spoon.reflect.declaration.CtMethod;
-import spoon.reflect.factory.Factory;
-import spoon.reflect.visitor.filter.TypeFilter;
 
 import java.io.File;
 

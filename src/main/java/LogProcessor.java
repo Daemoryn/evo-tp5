@@ -1,12 +1,7 @@
 import spoon.processing.AbstractProcessor;
-import spoon.reflect.code.CtBinaryOperator;
 import spoon.reflect.code.CtCodeSnippetStatement;
-import spoon.reflect.code.CtFor;
-import spoon.reflect.code.CtIf;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtExecutable;
-import spoon.reflect.declaration.CtVariable;
-import spoon.reflect.reference.CtTypeReference;
 
 public class LogProcessor extends AbstractProcessor<CtExecutable> {
 
