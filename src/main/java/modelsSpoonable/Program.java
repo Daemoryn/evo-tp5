@@ -1,27 +1,27 @@
 package modelsSpoonable;
 
-import modelsSpoonable.formatter.HTMLFormatter;
+//import modelsSpoonable.formatter.HTMLFormatter;
 import modelsSpoonable.models.Product;
 import modelsSpoonable.models.Repository;
 import modelsSpoonable.models.User;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.Scanner;
 import java.util.UUID;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
+//import java.util.logging.FileHandler;
+//import java.util.logging.Logger;
 
 public class Program {
 //    private static Logger logger = Logger.getLogger(Program.class.getName());
 
     public static void main(String[] args) {
-        try {
-            FileHandler handler = new FileHandler(".logs/" + UUID.randomUUID() + ".log");
-            handler.setFormatter(new HTMLFormatter());
+//        try {
+//            FileHandler handler = new FileHandler(".logs/" + UUID.randomUUID() + ".log");
+//            handler.setFormatter(new HTMLFormatter());
 //            logger.addHandler(handler);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
+//        } catch (IOException ioException) {
+//            ioException.printStackTrace();
+//        }
         boolean stop = false;
         String entry = "";
         Scanner sc = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class Program {
             r1.addProduct(p1);
             r1.addProduct(p2);
         } catch (Exception e) {
-//            logger.severe("Erreur pendant l'initialisation du dépot : " + e);
+            System.out.println("Erreur pendant l'initialisation du dépot : " + e);
         }
 
         System.out.println("Bonjour " + u1.getName() + " !");
